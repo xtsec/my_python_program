@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block page-header %}
+    客户详细信息
+{% endblock %}
+
+{% block page-body %}
+    <form action="" method="post" class="form-horizontal"> {% csrf_token %}
+        {% for field in customer_form %}
+            <div class="form-group has-feedback">
+                {% if field.field.required %}
+                    <label class="control-label col-sm-1" >* {{ field.label }}</label>
+                {% else %}
+                    <label class="control-label col-sm-1" >{{ field.label }}</label>
+                {% endif %}
+                <div class="col-sm-11">
+                    {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-md-7">
+            <button type="submit" class="btn btn-success col-sm-2 pull-right">Save</button>
+        </div>
+    </form>
+{% endblock %}

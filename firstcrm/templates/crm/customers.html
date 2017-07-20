@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load customer_tags %}
+
+{% block page-header %}
+    客户信息列表
+{% endblock %}
+
+{% block page-body %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>QQ</th>
+                <th>姓名</th>
+                <th>咨询课程</th>
+                <th>课程类型</th>
+                <th>课程顾问</th>
+                <th>渠道</th>
+                <th>客户备注</th>
+                <th>状态</th>
+                <th>日期</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customer_list %}
+            <tr>
+{#                <td><a href="/crm/customers/{{ customer.id }}/">{{ customer.id }}</a></td>#}
+{#                这里的url是调用django的路由系统，直接用里面的url的别名，等效于那条url#}
+                <td><a href="{% url 'customer_detail' customer.id %}">{{ customer.id }}</a></td>
+                <td>{{ customer.qq }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.course }}</td>
+                <td>{{ customer.get_course_type_display }}</td>
+                <td>{{ customer.consultant }}</td>
+                <td>{{ customer.get_source_type_display }}</td>
+                <td>{{ customer.consult_memo|truncatechars:50 }}</td>
+                <td class="{{ customer.status }}">{{ customer.get_status_display }}</td>
+{#                <td class="{{ customer.status }}">{{ customer.status|my_upper }}</td>#}
+                <td>{{ customer.date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#    使用自定义插件#}
+    {% my_pagination customer_list %}
+
+{#    <nav aria-label="...">#}
+{#        <ul class="pagination">#}
+{#            {% if customer_list.has_previous %}#}
+{#                <li class="">#}
+{#                    <a href="?page={{ customer_list.previous_page_number }}" aria-label="Previous">#}
+{#                        <span aria-hidden="true">&laquo;</span>#}
+{#                    </a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#            {% for page_num in customer_list.paginator.page_range %}#}
+{#                {% guess_page customer_list.number page_num %}#}
+{#                {% if page_num == customer_list.number %}#}
+{#                     <li class="active">#}
+{#                         <a href="?page={{ page_num }}">{{ page_num }}#}
+{#                         </a>#}
+{#                     </li>#}
+{#                {% else %}#}
+{#                     <li class="">#}
+{#                         <a href="?page={{ page_num }}">{{ page_num }}#}
+{#                         </a>#}
+{#                     </li>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#            {% if customer_list.has_next %}#}
+{#                <li class="">#}
+{#                    <a href="?page={{ customer_list.next_page_number }}" aria-label="Next">#}
+{#                        <span aria-hidden="true">&raquo;</span>#}
+{#                    </a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#    </nav>#}
+
+{% endblock %}
