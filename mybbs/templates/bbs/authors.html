@@ -1,0 +1,164 @@
+{% extends 'bbs/index.html' %}
+{% load custom %}
+
+{% block page-menu %}
+    {% for categroy in Category_objs %}
+        {% if categroy == category_obj %}
+            <li class="active"><a href="{% url 'categorys' categroy.id %}">{{ categroy.name }}</a></li>
+        {% else %}
+            <li class=""><a href="{% url 'categorys' categroy.id %}">{{ categroy.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block page-menu-right %}
+    {% if request.user.is_authenticated %}
+        <li class=""><a href="#">{{ request.user.userprofile.name }}</a></li>
+        <li class=""><a href="{% url 'logout' %}?next={{ request.path}}">注销</a></li>
+    {% else %}
+        <li class=""><a href="{% url 'login' %}?next={{ request.path }}">登陆/注册</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block page-container %}
+    {% csrf_token %}
+    <div class="author_base_info">
+        <div class="author_base_info-left">
+            <img src="/static/{{ author_obj.head_img|get_img_url }}" alt="头像">
+            <div id="ajax-change">
+                <div class="author_base_info-name">
+                   {{ author_obj.name }}
+                </div>
+                <div class="author_base_info-signature">
+                    {{ author_obj.signature }}
+                </div>
+            </div>
+        </div>
+        <div class="author_base_info-right">
+            <div class="update-element">
+                用户名：<h3 id="1" >{{ author_obj.name }}</h3>
+                {% if request.user.userprofile.name == author_obj.name %}
+                    <span  class="glyphicon glyphicon-pencil btn-sm" aria-hidden="true"></span>
+                {% endif %}
+            </div>
+           <div class="update-element">
+                个人签名：<h3 id="2" >{{ author_obj.signature }}</h3>
+                {% if request.user.userprofile.name == author_obj.name %}
+                    <span  class="glyphicon glyphicon-pencil btn-sm" aria-hidden="true"></span>
+                {% endif %}
+           </div>
+            <div class="hot-article">
+                <span>推荐文章：</span>
+                {% get_hot_article author_obj as hot_article %}
+                <div>
+                    <span><a href="{% url 'article_detail' hot_article.id %}">{{ hot_article.title }}</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="author-comment-body">
+        <div class="menu">
+            <div class="item">
+                <div id="t1" class="title" onclick="Hit(this);">TA的文章</div>
+            </div>
+            <div class="item">
+                <div id="t2" class="title" onclick="Hit(this);">TA的评论</div>
+            </div>
+
+        </div>
+        <div class="author-content">
+            <div class="TA-article">
+                {% for article in author_article_list %}
+                <div class="TA-article-each">
+                    <span><a href="{% url 'article_detail' article.id %}">{{ article.title }}</a></span>
+                </div>
+                {% endfor %}
+                {% if author_article_list %}
+                    {#    使用自定义插件#}
+                    {% my_pagination author_article_list %}
+                {% endif %}
+            </div>
+            <div class="TA-comment">
+                {% for comment in author_comment_list %}
+                <div class="TA-comment-each">
+                    <span><a href="{% url 'article_detail' comment.article.id %}">{{ comment.comment }}</a></span>
+                </div>
+                {% endfor %}
+                {% if author_comment_list %}
+                    {#    使用自定义插件#}
+                    {% my_pagination author_comment_list %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript-area %}
+{#<script src="/static/bootstrap/js/customer.js"></script>#}
+<script>
+// authors.html
+function getCsrf() {
+    return $("input[name='csrfmiddlewaretoken']").val()
+}
+
+function ajaxUpdate(val,ths) {
+    $.post(
+         "{% url 'update_info' author_obj.id %}",
+{#        "/bbs/update_info/{{ author_obj.id }}",#}
+        {
+            "element_id": $(ths).parent().attr('id'),
+            "new_value": val,
+            'csrfmiddlewaretoken': getCsrf()
+        },
+        function (callback) {
+            $('#ajax-change').html(callback);
+        });  //end post
+}
+
+function Hit(ths) {
+    $(ths).addClass('bg-color');
+    $(ths).parent().siblings().children().removeClass('bg-color');
+    var val = $(ths).attr('id');
+    if (val == 't1') {
+        $('.TA-comment').addClass('hide');
+        $('.TA-article').removeClass('hide');
+    } else {
+        $('.TA-article').addClass('hide');
+        $('.TA-comment').removeClass('hide');
+    }
+}
+
+function getFirst() {
+    var path_url = "{{ request.get_full_path }}";
+    if (path_url.indexOf('page') < 0){
+        $('#t1').addClass('bg-color');
+        $('.TA-comment').addClass('hide');
+    }
+}
+
+function setPageColor(color) {
+    document.body.style.background = color;
+}
+
+$(document).ready(function () {
+    setPageColor('#F0F4FB');
+    getFirst();
+
+    $('.update-element').delegate('span', 'click', function () {
+        var old_val = $(this).prev().text();
+        $(this).prev().html("<input type='text' value='"+ old_val +"' />" +
+            "<button style='margin-left:10px; border:none;'>修改</button>");
+        $(this).removeClass('glyphicon glyphicon-pencil btn-sm');
+    });
+    $('.update-element h3').delegate('button', 'click', function () {
+{#        $(this) 是这个button #}
+        var val = $(this).prev().val();
+{#        下面这个执行ajax的步骤一定要在把input等标签去掉之前 #}
+        ajaxUpdate(val,this);
+        $(this).parent().next().addClass('glyphicon glyphicon-pencil btn-sm');
+        $(this).parent().html(val);
+    });  // end add-event
+
+}); //end ready
+</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'bbs/index.html' %}
+
+{% block page-container %}
+    <div class="login-body">
+        <div class="login-container">
+            <div class="login-header">
+                <a myattr="c1" id="l1" class="header-tab" onclick="CheckMenu(this);">登陆</a>
+                <a myattr="c2" id="l2" class="header-tab" onclick="CheckMenu(this);">注册</a>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="login-body">
+                <div id="c1" class="tab-body">
+                    <form action="" method="post"> {% csrf_token %}
+                        <p>账户: <input type="text" name="username" /></p>
+                        <p>密码: <input type="password" name="password" /></p>
+                        <p><input type="submit" value="登陆" /></p>
+                    </form>
+                    <div>
+                        {% if login_err %}
+                            <p style="color:red"> {{ login_err }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="c2" class="tab-body hide">
+                    <form action="/register/" method="post"> {% csrf_token %}
+                        <p>账户: <input type="text" name="user" placeholder="最好是英文"/></p>
+                        <p>姓名: <input type="text" name="username" /></p>
+                        <p>密码: <input type="password" name="password" placeholder=">8位且不与邮箱类似"/></p>
+                        <p>邮箱: <input type="text" name="email" placeholder="123456@qq.com"/></p>
+                        <p><input type="submit" value="注册" /></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript-area %}
+<script>
+    function CheckMenu(ths) {
+        $(ths).addClass('current').siblings().removeClass('current');
+        var bodyId = $(ths).attr('myattr');
+        var tmp = '#' + bodyId;
+        $(tmp).removeClass('hide').siblings().addClass('hide');
+    }  // end CheckMenu
+
+    function setPageColor(color) {
+        document.body.style.background = color;
+    } //end setPageColor
+    
+    $(document).ready(function () {
+        setPageColor('#F0F4FB');
+        $('#l1').addClass('current').siblings().removeClass('current');
+    }); //end ready
+</script>
+{% endblock %}

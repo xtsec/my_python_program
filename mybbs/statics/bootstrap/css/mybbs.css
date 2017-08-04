@@ -1,0 +1,437 @@
+body {
+    color: rgb(51, 51, 51);
+    font-family: Arial, 微软雅黑, "Microsoft yahei", "Hiragino Sans GB", "冬青黑体简体中文 w3", "Microsoft Yahei", "Hiragino Sans GB", "冬青黑体简体中文 w3", STXihei, 华文细黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
+
+}
+
+.page-body {
+    width: 100%;
+}
+
+.page-left {
+    width: 70%;
+    float: left;
+}
+
+.page-right {
+    width: 27%;
+    float: left;
+    /*background-color: red;*/
+    margin-left: 3%;
+}
+
+
+.article-body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-top: 1px solid #F6F6F6;
+}
+
+.article-img img {
+    width: 220px;
+    /*width: 27.6%;*/
+    height: 165px;
+    float: left;
+}
+
+
+.article-info {
+    float: left;
+    margin-left: 20px;
+    width:530px;
+}
+
+.article-info h2 {
+    font-weight:normal;
+    margin-bottom: 10px;
+}
+
+.article-info a {
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(51, 51, 51);
+}
+
+.article-info a:hover {
+    text-decoration: none;
+    font-size: 18px;
+    color: #337ab7;
+}
+.mob-author {
+    margin: 15px 0;
+    color: #999999;
+}
+
+.mob-author img {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.mob-author-name{
+    color: rgb(51, 51, 51);
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.article-brief {
+    color: #999999;
+}
+
+.clear {
+    clear: both;
+}
+
+.page-footer {
+    margin-top: 1000px;
+    bottom:0;
+    width:100%;
+    height:100px;
+    background-color: #ffc0cb;
+
+}
+
+.article-page-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.article-page-title-left {
+    float: left;
+}
+
+.article-page-title-left span {
+    margin-left: 10px;
+}
+
+.article-page-title-right {
+    margin-right: 60px;
+    float: right;
+    color: #5bc0de;
+}
+
+.page-content {
+    margin-left: 70px;
+}
+
+.page-left-content-img {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.page-left-content-img img {
+    width: 710px;
+    height: 532.5px;
+}
+
+.page-left-content-text {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.page-right {
+    text-align: center;
+    padding-top: 35px;
+    background-color: #FAFAFA;
+}
+
+.page-right img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+}
+
+.page-right-author-article {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F6F6F6;
+}
+
+.page-right-author-name a {
+    color: rgb(51, 51, 51);
+}
+
+.page-right-author-name a:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.page-right-author-article a {
+    color: #999;
+}
+
+.page-right-author-article a:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.page-right-recent-article div {
+    padding: 30px 30px 5px 30px;
+    text-align: left;
+    color: #999;
+}
+
+.page-right-recent-article span {
+    display: block;
+    padding: 5px 30px 10px 30px;
+    text-align: left;
+}
+
+.page-right-recent-article span a {
+    color: rgb(51, 51, 51);
+}
+
+.page-right-recent-article span a:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.page-left-thumb-up {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border: 1px solid #F6F6F6;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    margin-left: 290px;
+    /*font-size: 10px;*/
+    /*line-height: 40px;*/
+    /*color:#999;*/
+}
+
+.page-left-comment-name {
+    width: 65px;
+    font-size: 16px;
+    border-bottom: 4px solid red;
+}
+
+.page-left-hr {
+    margin: 0px 0px 20px 0px;
+    border: 1px solid #F6F6F6;
+}
+
+.comment-box {
+    margin-bottom: 40px;
+}
+
+.comment-box button {
+    margin-top: 10px;
+}
+
+.comment-list {
+    height: 100px;
+    margin-top: 80px;
+}
+
+.comment-list-title {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #F6F6F6;
+}
+
+.comment-list-title span {
+    font-size: 20px;
+}
+
+
+.tree-node {
+    height: 40px;
+    border-bottom: 1px solid #F6F6F6;
+    /*background-color: #449d44;*/
+    padding-top: 10px;
+    padding-bottom: 50px;
+    border-left: 1px dashed gray;
+    line-height: 40px;
+
+}
+
+.tree-node span {
+    margin-right: 20px;
+}
+
+.tree-node img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.tree-node-comment {
+    /*margin-top: 20px;*/
+}
+
+.author_base_info {
+    width: 100%;
+    height: 300px;
+    float: left;
+    background-color: white;
+}
+
+.author_base_info-left {
+    width: 30%;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #F6F6F6;
+}
+
+.author_base_info-left img {
+    width: 100px;
+    height: 100px;
+    margin-top: 70px;
+    border-radius: 100%;
+    margin-bottom: 25px;
+}
+
+.author_base_info-signature {
+    color: darkgray;
+    margin-top: 10px;
+}
+
+.author_base_info-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.author_base_info-right {
+    width: 70%;
+    float: left;
+    padding: 50px;
+    color: darkgray;
+}
+
+.author_base_info-right div {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.author_base_info-right div a {
+    color: darkgray;
+}
+
+.author_base_info-right h3 {
+    display: inline;    /*消除h3的自动换行*/
+    font-size: 18px;
+}
+
+.author_base_info-right span{
+  cursor:pointer;
+}
+
+.hot-article {
+    padding-top: 30px;
+}
+
+.author_base_info-right a:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.author-comment-body {
+    margin-top: 20px;
+    width: 100%;
+    height: 800px;
+    float: left;
+    background-color: white;
+}
+
+.author-content {
+    padding-top: 20px;
+    padding-left: 320px;
+}
+
+.menu {
+    width: 25%;
+    height: 100%;
+    background-color: #FAFAFA;
+    float: left;
+}
+
+.title {
+    height: 50px;
+    /*background-color:white;*/
+    color: black;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+}
+
+.bg-color {
+    background-color: white;
+}
+
+.hide {
+    display: none;
+}
+
+.TA-article-each {
+    height:30px;
+    font-size: 16px;
+}
+
+.TA-article-each a {
+    color: darkgray;
+}
+
+.TA-article-each a:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.TA-comment-each {
+    height:30px;
+    font-size: 16px;
+}
+
+.TA-comment-each a {
+    color: darkgray;
+}
+
+.TA-comment-each a:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.login-body {
+    margin-top: 60px;
+    width: 100%;
+}
+
+.login-container {
+    width: 30%;
+    height: 400px;
+    margin-left: 35%;
+    text-align: center;
+    background-color: white;
+}
+
+.login-header {
+    width: 100%;
+    height: 15%;
+    background-color: ghostwhite;
+}
+
+.login-header a {
+    text-decoration: none;
+    color: darkgray;
+}
+
+.header-tab {
+    width: 50%;
+    height: 100%;
+    float: left;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.current {
+    background-color: white;
+}
+
+.tab-body p {
+    margin-top: 20px;
+}
